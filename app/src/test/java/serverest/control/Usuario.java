@@ -50,4 +50,15 @@ public class Usuario {
                 .body("message", is(message))
                 .extract().path("authorization");
     }
+
+    public static void deletaUsuario(String userId, String userToken, Integer statusCode, String message) {
+        given()
+                .header("authorization", userToken)
+                .pathParam("_id", userId)
+        .when()
+                .delete(Environment.localhost + Endpoint.usuariosID)
+        .then()
+                .statusCode(statusCode)
+                .body("message", is(message));
+    }
 }

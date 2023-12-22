@@ -24,7 +24,10 @@ public class Exercicio04Test {
         String productId = Produto.cadastrarProduto(produtoDTO, userToken, HttpStatus.SC_CREATED, Mensagem.cadastroSucesso);
         //Cadastrar carrinho
         Carrinho.cadastrarCarrinho(productId, 1, userToken, HttpStatus.SC_CREATED, Mensagem.cadastroSucesso);
-        //Verificar deletar usuario
-
+        //Verificar deletar usuario com carrinho
+        Usuario.deletaUsuario(userId, userToken, 400, Mensagem.deleteUsuarioFalhaCarrinho);
+        //Verificar deletar usuario sem carrinho
+        Carrinho.cancelarCompra(userToken, 200, Mensagem.deleteProdutoSucesso);
+        Usuario.deletaUsuario(userId, userToken, 200, Mensagem.deleteUsuarioSucesso);
     }
 }
