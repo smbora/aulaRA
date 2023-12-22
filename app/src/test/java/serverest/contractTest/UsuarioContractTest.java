@@ -18,26 +18,26 @@ public class UsuarioContractTest {
 
     @Test
     public void contractTestCadastrarUsuarioComSucesso() {
-        //Pré-condição
+        //PrÃ©-condiÃ§Ã£o
         String nome = faker.name().firstName();
         String email = nome + "@contracttest.com";
         String password = "teste";
         String administrador = "true";
         UsuarioDTO usuarioDTO = new UsuarioDTO(nome, email, password, administrador);
-        //Esta é a validação principal deste caso de teste
+        //Esta Ã© a validaÃ§Ã£o principal deste caso de teste
         Usuario.cadastrarUsuario(usuarioDTO, HttpStatus.SC_CREATED, Mensagem.cadastroSucesso);
     }
 
     @Test
     public void contractTestEmailJaExistente() {
-        //Pré-condição
+        //PrÃ©-condiÃ§Ã£o
         String nome = faker.name().firstName();
         String email = nome + "@contracttest.com";
         String password = "teste";
         String administrador = "true";
         UsuarioDTO usuarioDTO = new UsuarioDTO(nome, email, password, administrador);
         Usuario.cadastrarUsuario(usuarioDTO, HttpStatus.SC_CREATED, Mensagem.cadastroSucesso);
-        //Esta é a validação principal deste caso de teste
+        //Esta Ã© a validaÃ§Ã£o principal deste caso de teste
         Usuario.cadastrarUsuario(usuarioDTO, HttpStatus.SC_BAD_REQUEST, Mensagem.emailJaUsado);
     }
 
